@@ -13,7 +13,7 @@ class Login extends React.Component {
   }
 
   submit = () => {
-    api.postRequest('/login', {username: this.state.username, password: this.state.password}, api.getToken())
+    api.postRequestNonAuth('/api/users/authenticate', {username: this.state.username, password: this.state.password})
     .then((res) => {
       console.log(res);
     })
@@ -22,13 +22,25 @@ class Login extends React.Component {
     })
   }
 
+  changeUsername = (e) => {
+    this.setState({
+      username: e.target.value
+    });
+  }
+
+  changePassword = (e) => {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
   render() {
     return (
       <div className="login-page">
         <div className="form">
           <div className="login-form">
-            <input type="text" placeholder="username" />
-            <input type="password" placeholder="password" />
+            <input type="text" onChange={this.changeUsername} placeholder="username" />
+            <input type="password" onChange={this.changePassword} placeholder="password" />
             <button onClick={this.submit}>login</button>
           </div>
         </div>

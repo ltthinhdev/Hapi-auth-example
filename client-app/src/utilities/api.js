@@ -4,8 +4,7 @@ const instance = axios.create({
     baseURL: 'http://localhost:3000',
     timeout: 1000,
     contentType: 'application/json',
-    'X-Requested-With': 'XMLHttpRequest'
-  });
+});
 
 export const getToken = () => {
     sessionStorage.getItem('token');
@@ -19,8 +18,14 @@ export const getRequest = (url, params, token) => {
     return instance.get(url, {
         params: params,
         headers: {
-            Authorization: 'Bearer ' + token
+            Authorization: 'Bearer ' + token,
         }
+    });
+}
+
+export const postRequestNonAuth = (url, params) => {
+    return instance.post(url, {
+        params: params,
     });
 }
 

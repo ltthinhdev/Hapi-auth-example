@@ -6,7 +6,28 @@ const glob = require('glob');
 const path = require('path');
 const secret = require('./config');
 
-const server = new Hapi.Server({ port: 3000 });
+const server = new Hapi.Server({ 
+    port: 3000, 
+    routes: 
+    { 
+        cors: {
+            origin: [
+                'http://localhost:3001',
+                'http://localhost',
+            ],
+            additionalHeaders: [
+                'Access-Control-Allow-Origin',
+                'Access-Control-Request-Method',
+                'Allow-Origin',
+                'Origin',
+                'access-control-allow-origin',
+                'access-control-request-method',
+                'allow-origin',
+                'origin',
+            ]
+        }
+    } 
+});
 
 const dbUrl = 'mongodb+srv://root:abcd1234@tanthinh-gsp78.mongodb.net/test?retryWrites=true&w=majority';
 

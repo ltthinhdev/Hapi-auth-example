@@ -13,6 +13,10 @@ module.exports = {
     method: 'POST',
     path: '/api/users/authenticate',
     config: {
+        cors: {
+            origin: ['*'],
+            additionalHeaders: ['cache-control', 'x-requested-with']
+        },
         pre: [
             { method: verifyCredentials, assign: 'user' }
         ],
