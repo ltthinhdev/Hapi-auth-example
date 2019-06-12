@@ -2,12 +2,14 @@ const axios = require('axios');
 
 const instance = axios.create({
     baseURL: 'http://localhost:3000',
-    timeout: 1000,
-    contentType: 'application/json',
+    timeout: 60000,
+    headers: {
+        'Content-Type': 'application/json',
+    }
 });
 
 export const getToken = () => {
-    sessionStorage.getItem('token');
+    return sessionStorage.getItem('token');
 }
 
 export const setToken = (token) => {
@@ -25,7 +27,7 @@ export const getRequest = (url, params, token) => {
 
 export const postRequestNonAuth = (url, params) => {
     return instance.post(url, {
-        params: params,
+        ...params,
     });
 }
 

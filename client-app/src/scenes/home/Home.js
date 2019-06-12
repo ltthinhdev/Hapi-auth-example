@@ -10,7 +10,7 @@ class Home extends React.Component {
 
   checkAuth = () => {
     let { history } = this.props;
-    api.getRequest('/home', {}, api.getToken())
+    api.getRequest('/api/users', {}, api.getToken())
       .then((res) => {
         console.log(res);
       })

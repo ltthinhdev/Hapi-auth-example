@@ -13,9 +13,11 @@ class Login extends React.Component {
   }
 
   submit = () => {
+    let { history } = this.props;
     api.postRequestNonAuth('/api/users/authenticate', {username: this.state.username, password: this.state.password})
     .then((res) => {
-      console.log(res);
+      api.setToken(res.data.id_token);
+      history.push('/');
     })
     .catch((error) => {
       console.log(error);
