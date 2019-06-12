@@ -1,0 +1,22 @@
+{
+  "name": "Auth-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^18.3.1",
+    "@hapi/yar": "^9.2.0",
+    "aguid": "^2.0.0",
+    "bcrypt": "^3.0.6",
+    "boom": "^7.3.0",
+    "glob": "^7.1.4",
+    "hapi": "^18.1.0",
+    "hapi-auth-jwt": "^4.0.0",
+    "hapi-auth-jwt2": "^8.6.1",
+    "hapi-redis": "^6.0.0",
+    "hapi-redis-connection": "^1.0.1",
+    "joi": "^14.3.1",
+    "mongoose": "^5.5.14",
+    "redis": "^2.8.0"
+  }
+}
