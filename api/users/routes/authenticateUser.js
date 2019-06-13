@@ -9,16 +9,6 @@ const jwt = require('jsonwebtoken');
 const aguid = require('aguid');
 const secret = require('../../../config');
 
-const cookie_options = {
-    ttl: 30 * 60 * 1000, //
-    encoding: 'none',    // we already used JWT to encode
-    isSecure: false,      // warm & fuzzy feelings
-    isHttpOnly: true,    // prevent client alteration
-    clearInvalid: false, // remove invalid cookies
-    strictHeader: true,  // don't allow violations of RFC 6265
-    path: '/'            // set the cookie for all routes
-  }
-
 module.exports = {
     method: 'POST',
     path: '/api/users/authenticate',
@@ -36,17 +26,12 @@ module.exports = {
                 scope: user.admin ? 'admin' : '',
                 exp: new Date().getTime() + 30 * 60 * 1000
               }
-            request.redis.set(session.id, JSON.stringify(session));
+            request.yar.set(session.id, JSON.stringify(session));
             let token = jwt.sign(session, secret, {algorithm: 'HS256'});
-            return h.response({ id_token: token }).state("token", token).code(201);
+            return h.response({ id_token: token }).code(201);
         },  
         validate: {
             payload: authenticateUserSchema
-        },
-        config: {
-            plugins: {
-                yar: {}
-            }
         }
     }
 };

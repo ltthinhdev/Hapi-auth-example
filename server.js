@@ -5,26 +5,10 @@ const mongoose = require('mongoose');
 const glob = require('glob');
 const path = require('path');
 const secret = require('./config');
-const CatboxRedis = require('@hapi/catbox-redis');
 const Yar = require('@hapi/yar');
 
 const server = new Hapi.Server({
   port: 3000,
-  cache: [
-    {
-      name: 'my_cache',
-      provider: {
-        constructor: CatboxRedis,
-        options: {
-          partition: 'my_cached_data',
-          host: '127.0.0.1',
-          port: 6379,
-          database: 0,
-          tls: {}
-        }
-      }
-    }
-  ],
   routes:
   {
     cors: {
@@ -32,6 +16,7 @@ const server = new Hapi.Server({
         'http://localhost:3001',
         'http://localhost',
       ],
+      credentials : true,
       additionalHeaders: [
         'Access-Control-Allow-Origin',
         'Access-Control-Request-Method',
@@ -60,12 +45,9 @@ const validate = async (decoded, request) => {
 
 const yarOpts = {
   maxCookieSize: 0,
-  cache: {
-    cache: 'my_cache'
-  },
   cookieOptions: {
     password: 'the-password-must-be-at-least-32-characters-long',
-    isSecure: true
+    isSecure: false
   }
 };
 
@@ -83,12 +65,15 @@ const init = async () => {
     verifyOptions: { algorithms: ['HS256'] }
   });
 
+  let routes = [];
   glob.sync('api/**/routes/*.js', {
     root: __dirname
   }).forEach(file => {
     const route = require(path.join(__dirname, file));
-    server.route(route);
+    routes.push(route);
   });
+
+  server.route(routes);
 
   await server.start()
 
