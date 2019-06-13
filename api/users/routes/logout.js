@@ -7,8 +7,12 @@ module.exports = {
     config: {
         handler: async (request, h) => {
             console.log(request);
-            // let decoded = jwt.decode(request.auth.credentials.id);
-            return h.response(request).code(201);
+            let session = await request.yar.get(request.auth.credentials.id);
+            let sessionJson = JSON.parse(session);
+            sessionJson.valid = false;
+            sessionJson.exp = new Date().getTime();
+            request.yar.set(sessionJson.id, JSON.stringify(sessionJson));
+            return h.response('Logged out!').code(201);
         },
         auth: {
             strategy: 'jwt'

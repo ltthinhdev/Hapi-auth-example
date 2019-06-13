@@ -20,11 +20,22 @@ class Home extends React.Component {
       })
   }
 
+  logout = () => {
+    let { history } = this.props;
+    api.getRequest('/api/users/logout', {}, api.getToken())
+      .then((res) => {
+        history.push('/login');
+      })
+      .catch((error) => {
+        history.push('/login');
+      })
+  }
+
   render() {
     return (
       <div className="wrap">
         <div className="funny-img"></div>
-        <div className="logout">
+        <div onClick={this.logout} className="logout">
           <div className="button"></div>
         </div>
       </div>

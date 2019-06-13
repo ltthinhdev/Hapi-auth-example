@@ -17,7 +17,7 @@ async function hashPasswordAsync(password, cb) {
 
 module.exports = {
     method: 'POST',
-    path: '/api/users',
+    path: '/api/createUsers',
     config: {
         pre: [
             { method: verifyUniqueUser }

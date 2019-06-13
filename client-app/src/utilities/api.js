@@ -2,10 +2,11 @@ const axios = require('axios');
 
 const instance = axios.create({
     baseURL: 'http://localhost:3000',
-    credentials: 'include',
+    credentials: 'same-origin',
+    withCredentials: true,
     timeout: 60000,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     }
 });
 

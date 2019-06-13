@@ -23,7 +23,7 @@ module.exports = {
         },
         auth: {
             strategy: 'jwt',
-            scope: ['admin']
+            // scope: ['admin']
         }
     }
 }

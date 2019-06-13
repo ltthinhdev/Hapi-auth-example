@@ -47,7 +47,8 @@ const yarOpts = {
   maxCookieSize: 0,
   cookieOptions: {
     password: 'the-password-must-be-at-least-32-characters-long',
-    isSecure: false
+    isSecure: false,
+    isSameSite: false
   }
 };
 
