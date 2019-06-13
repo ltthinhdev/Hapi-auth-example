@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Login.css';
+// import './css/Login.css';
 import * as api from '../../utilities/api';
 
 class Login extends React.Component {
@@ -37,6 +37,11 @@ class Login extends React.Component {
     });
   }
 
+  register = () => {
+    let { history } = this.props;
+    history.push('/register');
+  }
+
   render() {
     return (
       <div className="login-page">
@@ -45,7 +50,7 @@ class Login extends React.Component {
             <input type="text" onChange={this.changeUsername} placeholder="username" />
             <input type="password" onChange={this.changePassword} placeholder="password" />
             <button onClick={this.submit}>login</button>
-            <p class="message">Not registered? <a href="/register">Create an account</a></p>
+            <p class="message">Not registered? <a href="#" onClick={this.register}>Create an account</a></p>
           </div>
         </div>
       </div>
