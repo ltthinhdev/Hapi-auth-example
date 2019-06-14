@@ -1,0 +1,39 @@
+.home_animation {
+  margin: 0;
+  background: -webkit-radial-gradient(center, ellipse cover, #111 10%, #333 90%);
+}
+
+.home_animation canvas {
+  display: block;
+  cursor: crosshair;
+}
+
+.home_animation h2 {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  letter-spacing: 4px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #AAA;
+}
+
+.home_animation .logoutContain {
+    color: #aaa;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.home_animation .logoutBtn {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.home_animation .logoutBtn:hover {
+    color: #6d6c6c;
+}

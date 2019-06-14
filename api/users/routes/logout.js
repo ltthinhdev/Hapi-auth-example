@@ -6,7 +6,6 @@ module.exports = {
     path: '/api/users/logout',
     config: {
         handler: async (request, h) => {
-            console.log(request);
             let session = await request.yar.get(request.auth.credentials.id);
             let sessionJson = JSON.parse(session);
             sessionJson.valid = false;

@@ -12,7 +12,6 @@ class Home extends React.Component {
     let { history } = this.props;
     api.getRequest('/api/users', {}, api.getToken())
       .then((res) => {
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);

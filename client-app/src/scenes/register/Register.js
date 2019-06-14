@@ -60,7 +60,7 @@ class Register extends React.Component {
             <input type="password" onChange={this.changePassword} placeholder="Password" />
             { this.state.error ? <p className="error">{this.state.error}</p> : null }
             <button onClick={this.submit}>Register</button>
-            <p class="message">Go back to<a href="#" onClick={this.login}> Login</a></p>
+            <p className="message">Go back to<a href="#" onClick={this.login}> Login</a></p>
           </div>
         </div>
       </div>

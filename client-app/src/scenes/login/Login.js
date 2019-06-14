@@ -16,8 +16,8 @@ class Login extends React.Component {
     let { history } = this.props;
     api.postRequestNonAuth('/api/users/authenticate', {username: this.state.username, password: this.state.password})
     .then((res) => {
-      console.log(res.headers);
       api.setToken(res.data.id_token);
+      sessionStorage.setItem('username', res.data.username);
       history.push('/');
     })
     .catch((error) => {
@@ -50,7 +50,7 @@ class Login extends React.Component {
             <input type="text" onChange={this.changeUsername} placeholder="username" />
             <input type="password" onChange={this.changePassword} placeholder="password" />
             <button onClick={this.submit}>login</button>
-            <p class="message">Not registered? <a href="#" onClick={this.register}>Create an account</a></p>
+            <p className="message">Not registered? <a href="#" onClick={this.register}>Create an account</a></p>
           </div>
         </div>
       </div>

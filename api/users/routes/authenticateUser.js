@@ -28,7 +28,7 @@ module.exports = {
               }
             request.yar.set(session.id, JSON.stringify(session));
             let token = jwt.sign(session, secret, {algorithm: 'HS256'});
-            return h.response({ id_token: token }).code(201);
+            return h.response({ id_token: token, username: user.username }).code(201);
         },  
         validate: {
             payload: authenticateUserSchema
