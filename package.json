@@ -19,6 +19,6 @@
     "hapi-redis-connection": "^1.0.1",
     "joi": "^14.3.1",
     "mongoose": "^5.5.14",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   }
 }
